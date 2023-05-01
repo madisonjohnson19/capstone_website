@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <body style="
+font-family:Cochin,Cambria,  Georgia, Times, 'Times New Roman', serif;
+background-color: #1e3962;
+color: white;
+text-align:center;
+vertical-align: center;
+
+">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNU Trash Can</title>
+    <!-- Add some CSS to change client UI -->
+    <!-- <style>
+    body {
+        background-color: #232F3E;
+        }
+    label, button {
+        color: #FF9900;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        margin-left: 40px;
+        }
+     input {
+        color: #232F3E;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        margin-left: 20px;
+        }
+    </style> -->
+    <script>
+        // define the callAPI function that takes a first name and last name as parameters
+        var callAPI = (PK,location)=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variable
+            var raw = JSON.stringify({"PK":PK,"location":location});
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://mcuh4u3ora.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+        }
+    
+    </script>
+</head>
+<style>
+    .center {
+      /* margin: auto; */
+      width: 70%;
+      border: 3px solid #17273b ;
+      padding: 10px;
+      margin-left: auto;
+      margin-right: auto;
+    margin-top: 7%;
+    margin-bottom: auto;
+      -webkit-border-radius: 15px;
+    }
+    </style>
+<body>
+    <div class="center"
+    style="
+    background-color:#112235;">
+    
+    <div class="header" style="
+    
+    /* height: 60px;
+    width: 100%; */
+    
+    ">
+        <h2 
+        style='display:block; width:100%; font-size: 30pt ;height:60%; text-align:center;background-color:#254473;  padding: 1% 0px 10px 0;
+        '
+        >
+        
+            Request Trash Can
+        </h2>
+       
+    </div>
+    <div class="Title" style="margin-top: 10%;">
+        <h1 style="font-size: 50pt;">
+            Where Are You?
+        </h1>
+         
+    </div>
+    <div class="location">
+        <h3 style="font-size: 25pt;">
+            West Wing Luter Third Floor:
+        </h3>
+       
+    </div>
+    <form>
+        <!-- <label>location :</label>
+        <input type="text" id="location"> -->
+        
+            <!-- <label for="cars">Choose a car:</label> -->
+    
+            <select name="destination" id="location" 
+            style="width: 200px; text-align: left; font-size: 20pt;font-family:Cochin;">
+            <option value="302">LUTR 302</option>
+            <option value="303">LUTR 303</option>
+            <option value="304">LUTR 304</option>
+            
+            </select>
+        
+        <!-- set button onClick method to call function we defined passing input values as parameters -->
+        <br></br>
+        <button type="button" onclick="callAPI('value',document.getElementById('location').value)"
+        style="margin-top: 10px; width: 150px; height: 50px; font-weight: bold; font-family:Cochin;-webkit-border-radius: 15px;
+-webkit-box-shadow: none;
+    font-size: 20pt; background-color: #515255; color: white"
+    >Submit</button>
+    </form>
+</div>
+</body>
+</html>
